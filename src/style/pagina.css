@@ -1,0 +1,583 @@
+/* ============================================
+   VARIABLES CSS
+   ============================================ */
+:root {
+  --color-bg-principal: linear-gradient(135deg, #fdfbfb, #ebedee);
+  --color-overlay: rgba(255, 255, 255, 0.7);
+  --color-overlay-hover: rgba(255, 255, 255, 0.9);
+  --sombra-suave: 0 4px 20px rgba(0, 0, 0, 0.15);
+  --sombra-media: 0 8px 25px rgba(0, 0, 0, 0.3);
+  --sombra-intensa: 0 12px 30px rgba(0, 0, 0, 0.4);
+  --radio-borde: 15px;
+  --radio-borde-grande: 20px;
+  --transicion-suave: all 0.3s ease;
+  --transicion-transform: transform 0.5s ease;
+}
+
+/* ============================================
+   CONTENEDOR PRINCIPAL
+   ============================================ */
+.pagina {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: var(--color-bg-principal);
+  overflow: hidden;
+  padding: 1rem;
+}
+
+/* ============================================
+   SLIDESHOW - LICORERÍA (AUTO-CAMBIO)
+   ============================================ */
+.slideshow {
+  width: min(80%, 1200px);
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radio-borde-grande);
+  cursor: pointer;
+  box-shadow: var(--sombra-media);
+  transition: var(--transicion-transform);
+  will-change: transform;
+}
+
+.slideshow:hover {
+  transform: scale(1.02);
+  box-shadow: var(--sombra-intensa);
+}
+
+.slideshow:focus-visible {
+  outline: 3px solid #4a90e2;
+  outline-offset: 4px;
+}
+
+/* ============================================
+   VENTANA MODAL (COMÚN PARA TODOS)
+   ============================================ */
+.ventana {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.imagen-activa {
+  width: min(80%, 900px);
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-intensa);
+  animation: aparecer 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ============================================
+   CONTROLES DE NAVEGACIÓN
+   ============================================ */
+.flecha,
+.cerrar {
+  background: var(--color-overlay);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transicion-suave);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  z-index: 10;
+}
+
+.flecha:hover,
+.cerrar:hover {
+  background: var(--color-overlay-hover);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.flecha:focus-visible,
+.cerrar:focus-visible {
+  outline: 3px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+.flecha.izquierda {
+  left: 5%;
+}
+
+.flecha.derecha {
+  right: 5%;
+}
+
+.cerrar {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  font-size: 1.5rem;
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  z-index: 10;
+}
+
+.cerrar:hover {
+  transform: scale(1.1) rotate(90deg);
+}
+
+/* ============================================
+   ANIMACIÓN CIRCULAR - INSURE (CORREGIDO)
+   ============================================ */
+.animacion-circular {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+}
+
+.img-circular {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: var(--sombra-suave);
+  animation: flotar 3s ease-in-out infinite;
+}
+
+.img-circular:hover {
+  transform: scale(1.15);
+  box-shadow: var(--sombra-media);
+  animation-play-state: paused;
+}
+
+.img-circular:focus-visible {
+  outline: 3px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* Animación de flotar para imágenes circulares */
+@keyframes flotar {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-15px) rotate(2deg); 
+  }
+}
+
+/* Retrasos escalonados para la animación circular */
+.img-circular:nth-child(1) { animation-delay: 0s; }
+.img-circular:nth-child(2) { animation-delay: 0.2s; }
+.img-circular:nth-child(3) { animation-delay: 0.4s; }
+.img-circular:nth-child(4) { animation-delay: 0.6s; }
+.img-circular:nth-child(5) { animation-delay: 0.8s; }
+.img-circular:nth-child(6) { animation-delay: 1s; }
+.img-circular:nth-child(7) { animation-delay: 1.2s; }
+.img-circular:nth-child(8) { animation-delay: 1.4s; }
+.img-circular:nth-child(9) { animation-delay: 1.6s; }
+.img-circular:nth-child(10) { animation-delay: 1.8s; }
+
+/* ============================================
+   IMÁGENES REBOTANTES - MOTIVA (CORREGIDO)
+   ============================================ */
+.rebotantes {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  max-width: 1200px;
+}
+
+.img-rebote {
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radio-borde);
+  cursor: pointer;
+  transition: var(--transicion-suave);
+  box-shadow: var(--sombra-suave);
+  object-fit: cover;
+  animation: rebote 2s ease-in-out infinite;
+}
+
+.img-rebote:hover {
+  transform: scale(1.1) translateY(-5px);
+  box-shadow: var(--sombra-media);
+  animation-play-state: paused;
+}
+
+.img-rebote:focus-visible {
+  outline: 3px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+@keyframes rebote {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Retraso en animación para efecto escalonado en rebotantes */
+.img-rebote:nth-child(1) { animation-delay: 0s; }
+.img-rebote:nth-child(2) { animation-delay: 0.1s; }
+.img-rebote:nth-child(3) { animation-delay: 0.2s; }
+.img-rebote:nth-child(4) { animation-delay: 0.3s; }
+.img-rebote:nth-child(5) { animation-delay: 0.4s; }
+.img-rebote:nth-child(6) { animation-delay: 0.5s; }
+.img-rebote:nth-child(7) { animation-delay: 0.6s; }
+.img-rebote:nth-child(8) { animation-delay: 0.7s; }
+.img-rebote:nth-child(9) { animation-delay: 0.8s; }
+.img-rebote:nth-child(10) { animation-delay: 0.9s; }
+.img-rebote:nth-child(11) { animation-delay: 1s; }
+.img-rebote:nth-child(12) { animation-delay: 1.1s; }
+.img-rebote:nth-child(13) { animation-delay: 1.2s; }
+.img-rebote:nth-child(14) { animation-delay: 1.3s; }
+.img-rebote:nth-child(15) { animation-delay: 1.4s; }
+.img-rebote:nth-child(16) { animation-delay: 1.5s; }
+.img-rebote:nth-child(17) { animation-delay: 1.6s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .slideshow {
+    width: 95%;
+    height: 50vh;
+  }
+
+  .imagen-activa {
+    width: 95%;
+    max-height: 70vh;
+  }
+
+  .flecha {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+  }
+
+  .flecha.izquierda {
+    left: 2%;
+  }
+
+  .flecha.derecha {
+    right: 2%;
+  }
+
+  .cerrar {
+    font-size: 1.2rem;
+    width: 35px;
+    height: 35px;
+  }
+
+  .img-circular {
+    width: 120px;
+    height: 120px;
+  }
+
+  .img-rebote {
+    width: 110px;
+    height: 110px;
+  }
+
+  .animacion-circular,
+  .rebotantes {
+    gap: 1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .img-circular {
+    width: 100px;
+    height: 100px;
+  }
+
+  .img-rebote {
+    width: 90px;
+    height: 90px;
+  }
+
+  .animacion-circular,
+  .rebotantes {
+    gap: 0.8rem;
+    padding: 0.8rem;
+  }
+}
+
+/* ============================================
+   ACCESIBILIDAD
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .img-circular,
+  .img-rebote {
+    animation: none !important;
+  }
+}
+
+/* Mejora de contraste para usuarios con baja visión */
+@media (prefers-contrast: high) {
+  .flecha,
+  .cerrar {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid #000;
+  }
+  
+  .img-circular,
+  .img-rebote {
+    border: 2px solid #000;
+  }
+}
+/* ============================================
+   MEJORAS PARA SLIDESHOW - LICORERÍA
+   ============================================ */
+.slideshow {
+  width: min(80%, 1200px);
+  height: 70vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: var(--radio-borde-grande);
+  cursor: pointer;
+  box-shadow: var(--sombra-media);
+  transition: var(--transicion-transform);
+  will-change: transform;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Indicador de que es clickeable */
+.slideshow::after {
+  content: '🖱️ Clic para ver galería';
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.slideshow:hover::after {
+  opacity: 1;
+}
+
+/* Indicador de progreso del slideshow */
+.slideshow::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #4a90e2, #2ecc71);
+  animation: progreso 2s linear infinite;
+}
+
+@keyframes progreso {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+/* ============================================
+   ANIMACIÓN CIRCULAR - MOTIVA (NUEVO)
+   ============================================ */
+.contenedor-circular-motiva {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  transition: transform 0.1s linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-circular-motiva {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--sombra-media);
+  object-fit: cover;
+  border: 3px solid transparent;
+  animation: brillo-motiva 3s ease-in-out infinite;
+}
+
+.img-circular-motiva:hover {
+  transform: translate(var(--x), var(--y)) rotate(var(--rotacion)) scale(1.3) !important;
+  box-shadow: var(--sombra-intensa);
+  border-color: #4a90e2;
+  z-index: 10;
+  animation-play-state: paused;
+}
+
+@keyframes brillo-motiva {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.1) saturate(1.2);
+  }
+}
+
+.centro-circular {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: var(--color-overlay);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--sombra-suave);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.centro-circular span {
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.centro-circular small {
+  font-size: 10px;
+  color: #666;
+  line-height: 1.2;
+}
+
+.contador-imagenes {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+}
+
+/* ============================================
+   RESPONSIVE PARA MOTIVA
+   ============================================ */
+@media (max-width: 768px) {
+  .contenedor-circular-motiva {
+    width: 350px;
+    height: 350px;
+  }
+  
+  .img-circular-motiva {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .centro-circular {
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+  }
+  
+  .centro-circular span {
+    font-size: 12px;
+  }
+  
+  .centro-circular small {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contenedor-circular-motiva {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .img-circular-motiva {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .centro-circular {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+  }
+  
+  .centro-circular span {
+    font-size: 10px;
+  }
+  
+  .centro-circular small {
+    font-size: 8px;
+  }
+}
+
+/* Efecto de reducción de movimiento para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .contenedor-circular-motiva {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  .img-circular-motiva {
+    animation: none !important;
+  }
+}
