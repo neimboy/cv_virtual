@@ -1,23 +1,22 @@
+// App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CVApp from './componentes/CVApp';
-import PaginaInsure from './componentes/PaginaInsure';
-import PaginaLicoreria from './componentes/PaginaLicoreria';
-import PaginaMotiva from './componentes/PaginaMotiva';
-import PaginaCertificado from './componentes/PaginaCertificado'
+import PaginaCertificado from './componentes/PaginaCertificado';
+import PaginaProyectos from './componentes/PaginaProyectos';
+import PaginaEventos from './componentes/PaginaEventos';
+import './style/index.css';
+import './style/pagina.css';
 
 function App() {
   return (
     <Router>
-      <div className="app">
-        <Routes>
-          <Route path="/" element={<CVApp />} />
-          <Route path="/insure" element={<PaginaInsure />} />
-          <Route path="/licoreria" element={<PaginaLicoreria />} />
-          <Route path="/motiva" element={<PaginaMotiva />} />
-          <Route path='/certificado' element={<PaginaCertificado />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<CVApp />} />
+        <Route path="/certificados" element={<PaginaCertificado />} />
+        <Route path="/proyecto/:proyectoId" element={<PaginaProyectos />} />
+        <Route path="/eventos" element={<PaginaEventos />} />
+      </Routes>
     </Router>
   );
 }
