@@ -76,7 +76,7 @@ const ExperienciaSeccion = ({ sectionRef }) => {
         <div className="experience-header">
           <h3>
             <span className="section-icon"></span> 
-            Experiencia Profesional
+            Experiencia Laboral
           </h3>
           <span className="experience-tag">Actual</span>
         </div>
@@ -104,7 +104,7 @@ const ExperienciaSeccion = ({ sectionRef }) => {
           <div className="timeline-dot"></div>
           <div className="timeline-content">
             <div className="timeline-header">
-              <h4>Empresa catsamae </h4>
+              <h4>Empresa cats mae </h4>
               <span className="timeline-date"> junio del 2023 - febrero del 2025 </span>
             </div>
             <p className="empresa"> Ventas y taller  </p>
